@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Nguồn truyện</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_source_book">Nguồn sách</string>
+    <string name="title_review_book">Review sách</string>
+    <string name="title_download_book">Sách đã tải</string>
+    <string name="title_setting">Cài đặt</string>
+</resources>

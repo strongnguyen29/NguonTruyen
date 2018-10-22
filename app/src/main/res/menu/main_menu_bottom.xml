@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_source_book"
+        android:icon="@drawable/ic_source_book"
+        android:title="@string/title_source_book" />
+
+    <item
+        android:id="@+id/navigation_review_book"
+        android:icon="@drawable/ic_review_book"
+        android:title="@string/title_review_book" />
+
+    <item
+        android:id="@+id/navigation_download_book"
+        android:icon="@drawable/ic_download"
+        android:title="@string/title_download_book" />
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_setting" />
+
+</menu>
