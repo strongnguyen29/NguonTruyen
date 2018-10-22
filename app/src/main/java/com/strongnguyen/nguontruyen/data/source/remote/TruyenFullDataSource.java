@@ -12,6 +12,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,6 +158,42 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
      */
     private List<FilterBook> getFilterBooks(@NonNull Document document) {
         ArrayList<FilterBook> filterBooks = new ArrayList<>();
+        Elements listElement = document.select("ul.navbar-nav > li.dropdown");
+
+        for (int i = 0; i < listElement.size(); i++) {
+            FilterBook filterBook = new FilterBook();
+
+            Element element = listElement.get(i);
+            if (i == 0) {
+                filterBook.setLabel("Danh sách");
+                filterBook.setPath("danh-sach");
+            } else {
+                filterBook.setLabel("Thể loại");
+                filterBook.setPath("the-loai");
+            }
+
+            ArrayList<Filter> listFilters = new ArrayList<>();
+
+            Elements listElmFilters = element.select("li > a");
+            for (Element element2 : listElmFilters) {
+                Filter filter = new Filter();
+                filter.setTitle(element2.text());
+
+                try {
+                    String link = element2.attr("href");
+                    URL url = new URL(link);
+                    String[] paths = url.getPath().split("/");
+                    filter.setValue(paths[2]);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                listFilters.add(filter);
+            }
+
+            filterBook.setFilters(listFilters);
+            filterBooks.add(filterBook);
+        }
 
         return filterBooks;
     }
