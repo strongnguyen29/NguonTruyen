@@ -3,7 +3,7 @@ package com.strongnguyen.nguontruyen.data.source;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-import com.strongnguyen.nguontruyen.data.FilterBook;
+import com.strongnguyen.nguontruyen.data.Filter;
 import com.strongnguyen.nguontruyen.data.source.remote.BooksOnlineDataSource;
 import com.strongnguyen.nguontruyen.data.source.remote.TruyenFullDataSource;
 
@@ -47,8 +47,8 @@ public class BooksRepository implements BooksOnlineDataSource {
     }
 
     @Override
-    public void getOnlineBooks(List<FilterBook> filterBooks, int page, @NonNull LoadOnlineBooksCallback callback) {
-        mLoadOnlineBooksAsync = new LoadOnlineBooksAsync(filterBooks, page, callback);
+    public void getOnlineBooks(List<Filter> filters, int page, @NonNull LoadOnlineBooksCallback callback) {
+        mLoadOnlineBooksAsync = new LoadOnlineBooksAsync(filters, page, callback);
         mLoadOnlineBooksAsync.execute();
     }
 
@@ -63,14 +63,14 @@ public class BooksRepository implements BooksOnlineDataSource {
      */
     private static class LoadOnlineBooksAsync extends AsyncTask<Void, Void, Void> {
 
-        private List<FilterBook> filterBooks;
+        private List<Filter> filters;
 
         private int page;
 
         private LoadOnlineBooksCallback callback;
 
-        public LoadOnlineBooksAsync(List<FilterBook> filterBooks, int page, LoadOnlineBooksCallback callback) {
-            this.filterBooks = filterBooks;
+        public LoadOnlineBooksAsync(List<Filter> filters, int page, LoadOnlineBooksCallback callback) {
+            this.filters = filters;
             this.page = page;
             this.callback = callback;
         }
@@ -79,7 +79,7 @@ public class BooksRepository implements BooksOnlineDataSource {
         protected Void doInBackground(Void... voids) {
             switch (sourceBook) {
                 case TRUYEN_FULL:
-                    TruyenFullDataSource.getInstance().getOnlineBooks(filterBooks, page, callback);
+                    TruyenFullDataSource.getInstance().getOnlineBooks(filters, page, callback);
                     break;
                 case TRUYEN_CV:
 

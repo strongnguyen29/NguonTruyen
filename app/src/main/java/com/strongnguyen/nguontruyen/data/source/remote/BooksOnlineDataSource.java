@@ -3,6 +3,7 @@ package com.strongnguyen.nguontruyen.data.source.remote;
 import android.support.annotation.NonNull;
 
 import com.strongnguyen.nguontruyen.data.Book;
+import com.strongnguyen.nguontruyen.data.Filter;
 import com.strongnguyen.nguontruyen.data.FilterBook;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public interface BooksOnlineDataSource {
 
         void onBooksLoaded(List<Book> books, List<FilterBook> filterBooks, int totalPage);
 
-        void onFailure(String mes);
+        void onFailure(int errorCode);
     }
 
-    void getOnlineBooks(@NonNull List<FilterBook> filterBooks, int page, @NonNull LoadOnlineBooksCallback callback);
+    void getOnlineBooks(@NonNull List<Filter> filters, int page, @NonNull LoadOnlineBooksCallback callback);
 
     void getOnlineBook(@NonNull String urlBook);
 }

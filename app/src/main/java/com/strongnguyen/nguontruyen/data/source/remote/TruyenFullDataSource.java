@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.strongnguyen.nguontruyen.data.Book;
 import com.strongnguyen.nguontruyen.data.Filter;
 import com.strongnguyen.nguontruyen.data.FilterBook;
+import com.strongnguyen.nguontruyen.data.source.ERROR;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -55,23 +56,29 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
     }
 
     @Override
-    public void getOnlineBooks(@NonNull List<FilterBook> filterBooks, int page, @NonNull LoadOnlineBooksCallback callback) {
+    public void getOnlineBooks(@NonNull List<Filter> filters, int page, @NonNull
+            LoadOnlineBooksCallback callback) {
 
-        String urlLoad = buildOnlineBooks(filterBooks, page);
+        String urlLoad = buildOnlineBooks(filters, page);
 
         try {
             Document document = Jsoup.connect(urlLoad).get();
             if (document != null) {
+                int totalPage = getTotalPage(document);
 
-                callback.onBooksLoaded(getListBooks(document),
-                        getFilterBooks(document), getTotalPage(document));
+                if (page <= totalPage) {
+                    callback.onBooksLoaded(
+                            getListBooks(document), getFilterBooks(document), totalPage);
+                } else {
+                    callback.onFailure(ERROR.NO_DATA);
+                }
                 return;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        callback.onFailure("Tải thất bại.");
+        callback.onFailure(ERROR.LOAD_FAILED);
     }
 
     @Override
@@ -84,26 +91,18 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
      * <p>
      *     Full url = https://truyenfull.vn/the-loai/kiem-hiep/hoan/trang-2/
      * </p>
-     * @param filterBooks path, filter;
+     * @param filters path, filter;
      * @param page page;
      * @return Url load;
      */
-    private String buildOnlineBooks(@NonNull List<FilterBook> filterBooks, int page) {
+    public String buildOnlineBooks(@NonNull List<Filter> filters, int page) {
         // Build url load; full url = https://truyenfull.vn/the-loai/kiem-hiep/hoan/trang-2/
         StringBuilder urlLoad = new StringBuilder(URL_PAGE);
 
-        for (FilterBook filterBook : filterBooks) {
-            // Add path to URL;
-            if (filterBook.getPath().length() > 1) {
-                // Exp: https://truyenfull.vn/danh-sach/
-                urlLoad.append(filterBook.getPath());
-                urlLoad.append("/");
-                // Exp: https://truyenfull.vn/the-loai/kiem-hiep/
-                for (Filter filter : filterBook.getFilters()) {
-                    urlLoad.append(filter.getValue());
-                    urlLoad.append("/");
-                }
-            }
+        // Exp: https://truyenfull.vn/the-loai/kiem-hiep/
+        for (Filter filter : filters) {
+            urlLoad.append(filter.getValue());
+            urlLoad.append("/");
         }
 
         // Add path page to URL;
@@ -122,7 +121,7 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
      * @param document Doc html
      * @return list;
      */
-    private List<Book> getListBooks(@NonNull Document document) {
+    public List<Book> getListBooks(@NonNull Document document) {
 
         ArrayList<Book> listBooks = new ArrayList<>();
 
@@ -143,7 +142,7 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
             book.setFull(element.select("span.label-full").first() != null);
 
             book.setAuthor(element.select("span.author").first().text());
-            book.setTotalChapter(element.select("span.chapter-text").first().text());
+            book.setTotalChapter(element.select(".text-info a").first().text());
 
             listBooks.add(book);
         }
@@ -156,35 +155,28 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
      * @param document Doc html
      * @return list;
      */
-    private List<FilterBook> getFilterBooks(@NonNull Document document) {
+    public List<FilterBook> getFilterBooks(@NonNull Document document) {
         ArrayList<FilterBook> filterBooks = new ArrayList<>();
         Elements listElement = document.select("ul.navbar-nav > li.dropdown");
 
-        for (int i = 0; i < listElement.size(); i++) {
+        for (Element element : listElement) {
             FilterBook filterBook = new FilterBook();
 
-            Element element = listElement.get(i);
-            if (i == 0) {
-                filterBook.setLabel("Danh sách");
-                filterBook.setPath("danh-sach");
-            } else {
-                filterBook.setLabel("Thể loại");
-                filterBook.setPath("the-loai");
-            }
+            filterBook.setLabel(element.select("a.dropdown-toggle").first().text());
 
             ArrayList<Filter> listFilters = new ArrayList<>();
 
-            Elements listElmFilters = element.select("li > a");
+            Elements listElmFilters = element.select("ul > li > a");
             for (Element element2 : listElmFilters) {
+
                 Filter filter = new Filter();
                 filter.setTitle(element2.text());
-
                 try {
                     String link = element2.attr("href");
                     URL url = new URL(link);
-                    String[] paths = url.getPath().split("/");
-                    filter.setValue(paths[2]);
-
+                    String path = url.getPath();
+                    path = path.substring(1, path.length() - 1);
+                    filter.setValue(path);
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -203,8 +195,40 @@ public class TruyenFullDataSource implements BooksOnlineDataSource {
      * @param document Doc html
      * @return int
      */
-    private int getTotalPage(@NonNull Document document) {
+    public int getTotalPage(@NonNull Document document) {
+        int totalPage = 1;
 
-        return 0;
+        Elements elements = document.select(".pagination li");
+
+        if (elements == null || elements.size() < 2) {
+            return totalPage;
+        }
+
+        if (elements.last().hasClass("page-nav")) {
+            // Exist form select page, remove it.
+            elements.remove(elements.get(elements.size()-1));
+        }
+
+        Element elementTotal = elements.last();
+        if (!elementTotal.select(".arrow").isEmpty()) {
+            // is exist btn last page: "Cuối"
+            String textTotal = elementTotal.select("a").first().attr("title");
+            String[] strArr = textTotal.split("Trang");
+            textTotal = strArr[strArr.length -1];
+            totalPage = Integer.parseInt(textTotal.replaceAll("[^0-9]", ""));
+
+        } else if (!elementTotal.select(".glyphicon-menu-right").isEmpty()) {
+            // is exist btn next page: ">", select btn left of this btn;
+            String text = elements.get(elements.size() - 2).text();
+            totalPage = Integer.parseInt(text.replaceAll("[^0-9]", ""));
+
+        } else if (elementTotal.hasClass("active")) {
+            // is btn last page;
+            String text = elementTotal.text();
+            totalPage = Integer.parseInt(text.replaceAll("[^0-9]", ""));
+
+        }
+
+        return totalPage;
     }
 }

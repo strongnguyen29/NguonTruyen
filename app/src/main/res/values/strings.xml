@@ -5,4 +5,8 @@
     <string name="title_review_book">Review sách</string>
     <string name="title_download_book">Sách đã tải</string>
     <string name="title_setting">Cài đặt</string>
+    <string name="error_no_data">Không có dữ liệu</string>
+    <string name="error_load_failed">Tải thất bại</string>
+    <string name="error_no_internet">Không có mạng internet</string>
+    <string name="error_undefined">Lỗi chưa xác định!</string>
 </resources>

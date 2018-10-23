@@ -1,0 +1,218 @@
+[
+  {
+    "label": "Danh sách",
+    "path": "",
+    "filters": [
+      {
+        "title": "Truyện mới cập nhật",
+        "value": "danh-sach/truyen-moi"
+      },
+      {
+        "title": "Truyện Hot",
+        "value": "danh-sach/truyen-hot"
+      },
+      {
+        "title": "Truyện Full",
+        "value": "danh-sach/truyen-full"
+      },
+      {
+        "title": "Tiên Hiệp Hay",
+        "value": "danh-sach/tien-hiep-hay"
+      },
+      {
+        "title": "Kiếm Hiệp Hay",
+        "value": "danh-sach/kiem-hiep-hay"
+      },
+      {
+        "title": "Truyện Teen Hay",
+        "value": "danh-sach/truyen-teen-hay"
+      },
+      {
+        "title": "Ngôn Tình Hay",
+        "value": "danh-sach/ngon-tinh-hay"
+      },
+      {
+        "title": "Ngôn Tình Sắc",
+        "value": "danh-sach/ngon-tinh-sac"
+      },
+      {
+        "title": "Ngôn Tình Ngược",
+        "value": "danh-sach/ngon-tinh-nguoc"
+      },
+      {
+        "title": "Ngôn Tình Sủng",
+        "value": "danh-sach/ngon-tinh-sung"
+      },
+      {
+        "title": "Ngôn Tình Hài",
+        "value": "danh-sach/ngon-tinh-hai"
+      },
+      {
+        "title": "Đam Mỹ Hài",
+        "value": "danh-sach/dam-my-hai"
+      },
+      {
+        "title": "Đam Mỹ Hay",
+        "value": "danh-sach/dam-my-hay"
+      },
+      {
+        "title": "Đam Mỹ H Văn",
+        "value": "danh-sach/dam-my-h-van"
+      }
+    ]
+  },
+  {
+    "label": "Thể loại",
+    "path": "",
+    "filters": [
+      {
+        "title": "Tiên Hiệp",
+        "value": "the-loai/tien-hiep"
+      },
+      {
+        "title": "Kiếm Hiệp",
+        "value": "the-loai/kiem-hiep"
+      },
+      {
+        "title": "Ngôn Tình",
+        "value": "the-loai/ngon-tinh"
+      },
+      {
+        "title": "Đô Thị",
+        "value": "the-loai/do-thi"
+      },
+      {
+        "title": "Quan Trường",
+        "value": "the-loai/quan-truong"
+      },
+      {
+        "title": "Võng Du",
+        "value": "the-loai/vong-du"
+      },
+      {
+        "title": "Khoa Huyễn",
+        "value": "the-loai/khoa-huyen"
+      },
+      {
+        "title": "Huyền Huyễn",
+        "value": "the-loai/huyen-huyen"
+      },
+      {
+        "title": "Dị Giới",
+        "value": "the-loai/di-gioi"
+      },
+      {
+        "title": "Dị Năng",
+        "value": "the-loai/di-nang"
+      },
+      {
+        "title": "Quân Sự",
+        "value": "the-loai/quan-su"
+      },
+      {
+        "title": "Lịch Sử",
+        "value": "the-loai/lich-su"
+      },
+      {
+        "title": "Xuyên Không",
+        "value": "the-loai/xuyen-khong"
+      },
+      {
+        "title": "Trọng Sinh",
+        "value": "the-loai/trong-sinh"
+      },
+      {
+        "title": "Trinh Thám",
+        "value": "the-loai/trinh-tham"
+      },
+      {
+        "title": "Thám Hiểm",
+        "value": "the-loai/tham-hiem"
+      },
+      {
+        "title": "Linh Dị",
+        "value": "the-loai/linh-di"
+      },
+      {
+        "title": "Sắc",
+        "value": "the-loai/sac"
+      },
+      {
+        "title": "Ngược",
+        "value": "the-loai/nguoc"
+      },
+      {
+        "title": "Sủng",
+        "value": "the-loai/sung"
+      },
+      {
+        "title": "Cung Đấu",
+        "value": "the-loai/cung-dau"
+      },
+      {
+        "title": "Nữ Cường",
+        "value": "the-loai/nu-cuong"
+      },
+      {
+        "title": "Gia Đấu",
+        "value": "the-loai/gia-dau"
+      },
+      {
+        "title": "Đông Phương",
+        "value": "the-loai/dong-phuong"
+      },
+      {
+        "title": "Đam Mỹ",
+        "value": "the-loai/dam-my"
+      },
+      {
+        "title": "Bách Hợp",
+        "value": "the-loai/bach-hop"
+      },
+      {
+        "title": "Hài Hước",
+        "value": "the-loai/hai-huoc"
+      },
+      {
+        "title": "Điền Văn",
+        "value": "the-loai/dien-van"
+      },
+      {
+        "title": "Cổ Đại",
+        "value": "the-loai/co-dai"
+      },
+      {
+        "title": "Mạt Thế",
+        "value": "the-loai/mat-the"
+      },
+      {
+        "title": "Truyện Teen",
+        "value": "the-loai/truyen-teen"
+      },
+      {
+        "title": "Phương Tây",
+        "value": "the-loai/phuong-tay"
+      },
+      {
+        "title": "Nữ Phụ",
+        "value": "the-loai/nu-phu"
+      },
+      {
+        "title": "Light Novel",
+        "value": "the-loai/light-novel"
+      },
+      {
+        "title": "Việt Nam",
+        "value": "the-loai/viet-nam"
+      },
+      {
+        "title": "Đoản Văn",
+        "value": "the-loai/doan-van"
+      },
+      {
+        "title": "Khác",
+        "value": "the-loai/khac"
+      }
+    ]
+  }
+]

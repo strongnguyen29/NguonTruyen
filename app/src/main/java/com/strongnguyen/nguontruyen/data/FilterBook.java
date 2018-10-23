@@ -13,25 +13,22 @@ public class FilterBook {
 
     private String label;
 
-    private String path;// TruyenFull: danh-sach ; the-loai
-
     private List<Filter> filters; // danh sach thuoc tinh
 
     public FilterBook() {
-        this("", "", new ArrayList<Filter>());
+        this("", new ArrayList<Filter>());
     }
 
     public FilterBook(String label) {
-        this(label, "", new ArrayList<Filter>());
+        this(label, new ArrayList<Filter>());
     }
 
     public FilterBook(String label, String path) {
-        this(label, path, new ArrayList<Filter>());
+        this(label, new ArrayList<Filter>());
     }
 
-    public FilterBook(String label, String path, List<Filter> filters) {
+    public FilterBook(String label, List<Filter> filters) {
         this.label = label;
-        this.path = path;
         this.filters = filters;
     }
 
@@ -41,14 +38,6 @@ public class FilterBook {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public List<Filter> getFilters() {
