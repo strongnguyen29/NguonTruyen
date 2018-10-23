@@ -9,4 +9,7 @@
     <string name="error_load_failed">Tải thất bại</string>
     <string name="error_no_internet">Không có mạng internet</string>
     <string name="error_undefined">Lỗi chưa xác định!</string>
+    <string name="title_search">Tìm kiếm</string>
+    <string name="title_filter">Lọc truyện</string>
+    <string name="des_poster_book">poster book</string>
 </resources>

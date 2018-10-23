@@ -27,6 +27,7 @@ import java.util.List;
  * Email: vancuong2941989@gmail.com
  */
 public class TruyenFullDataSource implements BooksOnlineDataSource {
+
     private static final String TAG = TruyenFullDataSource.class.getSimpleName();
 
     private static final String URL_PAGE = "https://truyenfull.vn/";

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.strongnguyen.nguontruyen.data.Filter;
 import com.strongnguyen.nguontruyen.data.source.remote.BooksOnlineDataSource;
+import com.strongnguyen.nguontruyen.data.source.remote.TruyenCvDataSource;
 import com.strongnguyen.nguontruyen.data.source.remote.TruyenFullDataSource;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class BooksRepository implements BooksOnlineDataSource {
     }
 
     @Override
-    public void getOnlineBooks(List<Filter> filters, int page, @NonNull LoadOnlineBooksCallback callback) {
+    public void getOnlineBooks(@NonNull List<Filter> filters, int page, @NonNull LoadOnlineBooksCallback callback) {
         mLoadOnlineBooksAsync = new LoadOnlineBooksAsync(filters, page, callback);
         mLoadOnlineBooksAsync.execute();
     }
@@ -82,7 +83,7 @@ public class BooksRepository implements BooksOnlineDataSource {
                     TruyenFullDataSource.getInstance().getOnlineBooks(filters, page, callback);
                     break;
                 case TRUYEN_CV:
-
+                    TruyenCvDataSource.getInstance().getOnlineBooks(filters, page, callback);
                     break;
             }
             return null;

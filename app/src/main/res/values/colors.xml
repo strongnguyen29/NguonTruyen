@@ -12,4 +12,13 @@
     <color name="colorBg30">#4c33333d</color>
     <color name="colorLineW">#1fffffff</color>
     <color name="colorLineB">#1f000000</color>
+
+
+    <color name="textDark1">#de000000</color>
+    <color name="textDark2">#8a000000</color>
+    <color name="textDark3">#61000000</color>
+
+    <color name="textLight1">#ffffff</color>
+    <color name="textLight2">#b2ffffff</color>
+    <color name="textLight3">#7fffffff</color>
 </resources>
