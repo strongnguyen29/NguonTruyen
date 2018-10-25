@@ -23,7 +23,7 @@ public class LocalFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.local_fragment, container, false);
+        return inflater.inflate(R.layout.frag_local, container, false);
     }
 
     @Override

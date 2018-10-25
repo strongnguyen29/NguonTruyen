@@ -23,7 +23,7 @@ public class ReviewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.review_fragment, container, false);
+        return inflater.inflate(R.layout.frag_review, container, false);
     }
 
     @Override

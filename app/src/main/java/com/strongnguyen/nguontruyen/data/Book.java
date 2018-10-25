@@ -3,6 +3,7 @@ package com.strongnguyen.nguontruyen.data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 /**
@@ -21,7 +22,7 @@ public class Book {
     @ColumnInfo(name = "id_book")
     private int idBook;
 
-    @Nullable
+    @NonNull
     @ColumnInfo(name = "url")
     private String url;
 
@@ -29,7 +30,7 @@ public class Book {
     @ColumnInfo(name = "title")
     private String title;
 
-    @Nullable
+    @NonNull
     @ColumnInfo(name = "poster")
     private String poster;
 
@@ -91,13 +92,13 @@ public class Book {
         this.idBook = idBook;
     }
 
-    @Nullable
+    @NonNull
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(@Nullable String url) {
-        this.url = url;
+    public void setUrl(@NonNull String url) {
+        this.url = url.trim();
     }
 
     @Nullable
@@ -109,13 +110,13 @@ public class Book {
         this.title = title;
     }
 
-    @Nullable
+    @NonNull
     public String getPoster() {
         return poster;
     }
 
-    public void setPoster(@Nullable String poster) {
-        this.poster = poster;
+    public void setPoster(@NonNull String poster) {
+        this.poster = poster.trim();
     }
 
     @Nullable

@@ -23,7 +23,9 @@ public class SourceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.source_book_fragment, container, false);
+
+
+        return inflater.inflate(R.layout.frag_source_book, container, false);
     }
 
     @Override

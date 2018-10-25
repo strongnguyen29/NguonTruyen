@@ -12,4 +12,7 @@
     <string name="title_search">Tìm kiếm</string>
     <string name="title_filter">Lọc truyện</string>
     <string name="des_poster_book">poster book</string>
+    <string name="text_author">Tác giả: %s</string>
+    <string name="text_reating">&#160;%s/10</string>
+    <string name="text_viewed">&#160;%s</string>
 </resources>

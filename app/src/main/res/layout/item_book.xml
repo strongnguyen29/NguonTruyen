@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorBgLight"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
@@ -80,7 +81,7 @@
         android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toEndOf="@+id/item_book_poster"
         app:layout_constraintTop_toBottomOf="@+id/item_book_chapter"
-        tools:text=" 8.5" />
+        tools:text=" 8.5/10" />
 
     <TextView
         android:id="@+id/item_book_viewed"
